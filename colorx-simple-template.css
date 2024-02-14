@@ -1,0 +1,266 @@
+[template=simple]{
+  --color-1: #151515;
+  --color-2: #fff;
+  --color-3: #000;
+  --color-4: #999;
+  --color-5: #000000bb;
+}
+
+.clx-open-box[template=simple]{
+  transform: scale(1, 1);
+}
+
+.clx-close-box[template=simple]{
+  transform: scale(0, 0);
+}
+
+.clx-picker[template=simple], .clx-preview[template=simple], .clx-add-favorite[template=simple], .clx-clear-favorites[template=simple]{
+  height: 30px;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.clx-picker[template=simple]{
+  height: 40px;
+}
+
+.clx-box[template=simple]{
+  width: 320px;
+  height: auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-auto-rows: auto;
+  gap: 10px;
+  background-color: var(--color-1);
+  border-radius: 5px;
+  transition: transform .25s;
+  border: 1px solid var(--color-2);
+  outline: 1px solid var(--color-1);
+}
+
+.clx-format-control[template=simple]{
+  width: 100%;
+  height: 15px;
+  grid-column: 1/10;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+}
+
+.clx-format-control[template=simple] > input, .clx-format-control[template=simple] > select {
+  background-color: transparent;
+  color: var(--color-2);
+  outline: none;
+  border: none;
+  font-size: .9rem;
+}
+
+.clx-format-control[template=simple] > select {
+  position: relative;
+  left: -7.5px;
+  text-transform: uppercase;
+}
+
+.clx-primary-preview[template=simple]{
+  grid-column: 10;
+  grid-row: 1/3;
+}
+
+.clx-list-color[template=simple]{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.clx-lastest-colors[template=simple]{
+  grid-column: 1/11;
+  grid-row: 2/4;
+}
+
+.clx-lastest-colors[template=simple]::before,
+.clx-favorites[template=simple]::before, 
+.clx-swatches[template=simple]::before {
+  content: 'history';
+  padding-left: 10px;
+  width: 100%;
+  color: var(--color-4);
+  font-size: .9rem;
+}
+
+.clx-clasic-spectrum-component[template=simple]{
+  width: 100%;
+  height: auto;
+  grid-column: 1/10;
+  grid-row: 4;
+  display: flex;
+}
+
+.clx-clasic-spectrum-component[template=simple]{
+  aspect-ratio: 1/.7;
+  gap: 10px;
+}
+
+.clx-clasic-spectrum[template=simple] {
+  width: calc(100% - 30px);
+  height: 100%;
+  z-index: 101;
+}
+
+.clx-clasic-spectrum[template=simple] > canvas{
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  border-radius: 2.5px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.clx-spectrum[template=simple] > button{
+  width: 10px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1px solid var(--color-2);
+  background-color: var(--color-5);
+}
+
+.clx-clasic-hue-control[template=simple]{
+  width: 30px;
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  box-sizing: border-box;
+}
+
+.clx-circle-spectrum-component[template=simple] {
+  grid-column: 1/9;
+  margin: 0 auto;
+  grid-row: 4;
+  width: 95%;
+  float: right;
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  box-sizing: border-box;
+}
+
+.clx-circle-spectrum[template=simple] {
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  box-sizing: border-box;
+}
+
+.clx-circle-hue-control[template=simple] > button{
+  background-color: var(--color-5);
+  border: 1px solid var(--color-2);
+  outline: none;
+}
+
+.clx-circle-spectrum[template=simple] > canvas {
+  border: 15px solid var(--color-1);
+  box-sizing: border-box;
+}
+
+.clx-clasic-hue-control[template=simple] > div{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, 
+              hsl(0, 100%, 50%), 
+              hsl(45, 100%, 50%),
+              hsl(90, 100%, 50%),
+              hsl(135, 100%, 50%),
+              hsl(180, 100%, 50%),
+              hsl(225, 100%, 50%),
+              hsl(270, 100%, 50%),
+              hsl(315, 100%, 50%),
+              hsl(360, 100%, 50%));
+  
+  box-sizing: border-box;
+}
+
+.clx-favorites[template=simple]{
+  grid-column: 1/11;
+  grid-row: 5;
+}
+
+.clx-favorites[template=simple]::before{
+  content: 'favorites'
+}
+
+.clx-add-favorite[template=simple]::before{
+  content: '➕';
+}
+
+.clx-clear-favorites[template=simple]::before{
+  content: '🗑️';
+}
+
+.clx-add-favorite[template=simple],
+.clx-clear-favorites[template=simple] {
+  background-color: #ddd;
+  transition: transform .5s;
+}
+
+.clx-add-favorite[template=simple]:active,
+.clx-clear-favorites[template=simple]:active {
+  transform: scale(.9);
+}
+
+.clx-swatches[template=simple]{
+  grid-column: 1/11;
+  grid-row: 6;
+}
+
+.clx-swatches[template=simple]::before{
+  content: 'swatches';
+}
+
+.clx-opacity-control[template=simple]{
+  width: 30px;
+  grid-column: 10;
+  grid-row: 4/5;
+  border: 1px solid var(--color-3);
+  outline: 1px solid var(--color-2);
+  box-sizing: border-box;
+}
+
+.clx-opacity-control[template=simple] > button, .clx-clasic-hue-control[template=simple] > button {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-color: var(--color-3);
+  border: none;
+  outline: none;
+}
+
+.clx-opacity-control:before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: 
+        linear-gradient(45deg, #FFFFFF40 25%, transparent 25%),
+        linear-gradient(-45deg, #FFFFFF40 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #FFFFFF40 75%),
+        linear-gradient(-45deg, transparent 75%, #FFFFFF40 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.clx-opacity-control > div {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-1), transparent);
+  background-color: var(--color-2);
+}

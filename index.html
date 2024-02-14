@@ -1,84 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-	body{
-		position: relative;
-		/* background-color: #151515; */
-	}
-	button{
-		padding: 10px;
-		background-color: transparent;
-		border: 1.5px solid black;
-		border-radius: 5px;
-		margin: 1%;
-		overflow: hidden;
-		cursor: pointer;
-	}
-	.clx-preview{
-		height: 20px;
-		width: 20px;
-		border-radius: 5px;
-		overflow: hidden;
-	}
-	.clx-spectrum{
-		width: 220px;
-		height: 200px;
-		padding: 10px;
-		border-radius: 10px;
-		/* box-shadow: 0 0 10px 1px black; */
-		overflow: hidden;
-		position: relative;
-	}
-	.clx-spectrum button {
-		padding: 0; 
-		border-radius: 50%;
-		width: 7%;
-		aspect-ratio: 1/1;
-		margin: 0;
-		border: 2px solid white
-	}
-	.clx-slider{
-		margin: 10px 5px;
-		width: 230px;
-		height: 10px;
-		/* border: 1px solid black; */
-		border-radius: 2.5px;
-		cursor: pointer;
-	}
-	.clx-slider > div{
-		width: 20px;
-		height: 20px;
-		background-color: #FFFFFFDD;
-		border: 2px solid gray;
-		top: calc(-50% - 2px);
-		left: -12px;
-		border-radius: 50px;
-	}
-	canvas{
-		cursor: pointer;
-	}
-	.clx-picker{
-		border-width: 5px;
-		border-style: solid;
-		padding: 5%;
-	}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./colorx-simple-template.css" class="Colorx-Template" title="simple">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <script src="./colorxm.js"></script>
-    <script>
-	const color = Colorx.create({
-		el: "body", 
-		// showFormatViewer: false, 
-		lastestColorsList: 3, 
-		favoriteColorsList: 8, 
-		defaultColor: "gold"
-		// showFormat: false, 
-	})
-    </script>
+  <main>
+    <section id="container-1" class="clx-container">
+    </section>
+  </main>
+  <script src="./colorx.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
