@@ -219,8 +219,8 @@ const Colorx = (function () {
         });
         
         const slider = createSlider();
-        slider.element.classList.add('clx-hue-control');
-        slider.element.classList.add('clx-clasic-hue-control');
+        slider.element.classList.add('clx-hue-spectrum-control');
+        slider.element.classList.add('clx-hue-clasic-spectrum-control');
         
         slider.isDrag((x, y) => {
             status = 'input';
@@ -235,7 +235,7 @@ const Colorx = (function () {
             ColorModule.value = `hsla(${value * 3.6}, ${saturation}%, ${luminosity}%, ${alpha})`;
             
             sliderRegister.forEach(e => e({
-                name: 'hue control',
+                name: 'hue spectrum control',
                 value: x | y,
                 x: slider.thumb.getBoundingClientRect().left,
                 y: slider.thumb.getBoundingClientRect().top
@@ -354,7 +354,7 @@ const Colorx = (function () {
         Object.assign(component.style, {
             position: 'relative',
             height: 'auto',
-            paddingTop: '94%',
+            paddingTop: '100%',
             borderRadius: '50%',
             overflow: 'hidden',
             background: 
@@ -371,8 +371,8 @@ const Colorx = (function () {
              )`
         });
         
-        slider.classList.add('clx-hue-control');
-        slider.classList.add('clx-circle-hue-control');
+        slider.classList.add('clx-hue-spectrum-control');
+        slider.classList.add('clx-hue-circle-spectrum-control');
         
         Object.assign(slider.style, {
             width: '100%',
@@ -462,7 +462,7 @@ const Colorx = (function () {
             draw(hue);
             
             sliderRegister.forEach(e => e({
-                name: 'hue control',
+                name: 'hue spectrum control',
                 value: hue * 100/360,
                 x: sliderThumb.getBoundingClientRect().left,
                 y: sliderThumb.getBoundingClientRect().top
@@ -586,7 +586,77 @@ const Colorx = (function () {
         };
     };
     
-    const ColorModuleConstructor = function(){
+    const createSliderBar = (ColorModule, changes) => {
+        const component = document.createElement('div');
+        component.className = 'clx-slider-bar';
+        
+        let status = 'output';
+        const sliders = {};
+        
+        for(const property in ColorModule.value.values){
+            if(property !== 'alpha'){
+                const slider = createSlider();
+                
+                slider.element.classList.add('clx-slider');
+                slider.element.classList.add(`clx-${property}-control`);
+                
+                slider.thumb.style.transition = 'top .5s, left .5s';
+                
+                switch(property){
+                    case 'red':
+                    case 'green':
+                    case 'blue':
+                    slider.format = 'rgba(red, green, blue, alpha)';
+                    slider.max = 255;
+                    break;
+                    case 'hue': 
+                    slider.format = 'hsla(hue, saturation%, luminosity%, alpha)';
+                    slider.max = 359;
+                    break;
+                    case 'saturation':
+                    case 'luminosity': 
+                    slider.format = 'hsla(hue, saturation%, luminosity%, alpha)';
+                    slider.max = 100;
+                    break;
+                };
+                
+                slider.isDrag((x, y) => {
+                    status = 'input';
+                    slider.thumb.style.transition = 'none';
+                    
+                    const value = x | y;
+                    ColorModule.value.values[property] = Math.round(value * slider.max / 100);
+                    
+                    const {red, green, blue, hue, luminosity, saturation, alpha} = ColorModule.value.values;
+                    ColorModule.value =
+                    slider.format
+                          .replace(/red/, red)
+                          .replace(/blue/, blue)
+                          .replace(/green/, green) 
+                          .replace(/hue/, hue)
+                          .replace(/luminosity/, luminosity)
+                          .replace(/saturation/, saturation)
+                          .replace(/alpha/, alpha);
+                });
+                
+                sliders[property] = slider;
+                component.appendChild(slider.element);
+            };
+        };
+        
+        component.addEventListener('touchend', () => {
+            status = 'output';
+            for(const slider in sliders){
+                sliders[slider].thumb.style.transition = 'top .5s, left .5s';
+            };
+            
+            changes.forEach(e => e(ColorModule.value));
+        });
+        
+        return {sliders, component, get status(){return status}};
+    };
+    
+    const createColorModule = function(){
         const datasheet = {
             hex: "#FFFFFF",
             rgb: "rgb(255,255,255)",
@@ -624,7 +694,10 @@ const Colorx = (function () {
             const max = Math.max(r, g, b), min = Math.min(r, g, b);
             let hue, saturation, luminosity = (max + min)/2;
             
-            if(max === min) hue = saturation = 0;
+            if(max === min){
+                hue = datasheet.values.hue / 360;
+                saturation = datasheet.values.saturation / 100;
+            } 
             else{
                 const d = max - min;
                 saturation = d/(luminosity > 0.5 ? (2 - max - min) : (max + min));
@@ -648,7 +721,8 @@ const Colorx = (function () {
                 if(this.picker) this.picker.style.backgroundColor = color;
                 
                 const r = rgba(this.picker ? this.picker : this.preview.fill);
-                Object.assign(datasheet, r);
+                Object.assign(datasheet.values, r.values);
+                datasheet.rgb = r.rgb;
                 hsla();
                 
                 const {red, green, blue, alpha, hue, saturation, luminosity} = datasheet.values;
@@ -670,7 +744,7 @@ const Colorx = (function () {
         };
     };
     
-    const FormatModuleConstructor = (changes, ColorModule) => {
+    const createFormatControl = (changes, ColorModule) => {
         const component = document.createElement('div');
         const select = document.createElement('select');
         const input = document.createElement('input');
@@ -761,30 +835,42 @@ const Colorx = (function () {
             container: 'body',
             alwaysOpen: false,
             showPreview: true,
-            numberOfPickers: 1,
+            numberOfPickers: 2,
             showFormats: true,
-            lastestColorLimit: 8,
-            favoriteColorLimit: 6,
-            spectrumType: 'clasic',
+            lastestColorLimit: 3,
+            favoriteColorLimit: 10,
+            spectrumType: 'none',
+            showSliderBar: false,
             swatches: [
-               "#FF0000", // Rojo
-               "#00FF00", // Verde
-               "#0000FF", // Azul
-               "#FFFF00", // Amarillo
-               "#FF00FF", // Magenta
-               "#00FFFF", // Cian
-               "#800080", // Púrpura
-               "#FFA500", // Naranja
-               "#FF000080", // Rojo
-               "#00FF0080", // Verde
-               "#0000FF80", // Azul
-               "#FFFF0080", // Amarillo
-               "#FF00FF80", // Magenta
-               "#00FFFF80", // Cian
-               "#80008080", // Púrpura
-               "#FFA50080"  // Naranja
+            "#0033FF",
+            "#FF3300",
+            "#FF0066",
+            "#FF00CC",
+            "#FF9900",
+            "#00FF66",
+            "#FF0033",
+            "#66FF00",
+            "#FF6600",
+            "#0099FF",
+            "#00FF99",
+            "#6600FF",
+            "#00FFFF",
+            "#FFCC00",
+            "#00CCFF",
+            "#FF00FF",
+            "#FF5733",
+            "#33FF57",
+            "#5733FF",
+            "#FFFF33",
+            "#33FFFF",
+            "#FF33FF",
+            "#FF5733",
+            "#33FF57",
+            "#5733FF",
+            "#FFFF33",
+            "#33FFFF"
             ],
-            showOpacityControl: true,
+            showOpacityControl: false,
         };
 
         constructor(options) {
@@ -798,6 +884,7 @@ const Colorx = (function () {
                 lastestColorLimit,
                 favoriteColorLimit,
                 spectrumType,
+                showSliderBar,
                 swatches,
                 showOpacityControl,
             } = Object.assign({}, Colorx.defaultOptions, options);
@@ -805,11 +892,11 @@ const Colorx = (function () {
             if(template === undefined) return console.error('Missing [template] property value');
             else if(template !== 'none'){
                 if(typeof template !== 'string') return console.error('Expected a string value for the [template] property');
-                else if(!document.querySelector('link.Colorx-Template[title=' + template + ']')) return console.error('Unable to find or load the specified stylesheet template');
+                else if(!document.querySelector('link.Colorx-Template[name=' + template + ']')) return console.error('Unable to find or load the specified stylesheet template');
             };
             
             const componentsRegister = {};
-            const ColorModule = ColorModuleConstructor();
+            const ColorModule = createColorModule();
             
             container = document.querySelector(container);
             if (!container) return console.error('Container not found');
@@ -848,7 +935,7 @@ const Colorx = (function () {
             return console.error('Expected a boolean value for the [showFormats] property');
             
             if(showFormats){
-                const module = FormatModuleConstructor(changes, ColorModule);
+                const module = createFormatControl(changes, ColorModule);
                 module.init((component) => {
                     box.appendChild(component);
                     componentsRegister['format-control'] = component;
@@ -1012,7 +1099,7 @@ const Colorx = (function () {
                 box.appendChild(spectrum.component);
                 
                 componentsRegister['spectrum'] = spectrum.spectrumElement;
-                componentsRegister['hue-control'] = spectrum.slider;
+                componentsRegister['hue-spectrum-control'] = spectrum.slider;
                 
                 this.updating((color) => {
                     if(spectrum.status === 'output'){
@@ -1024,6 +1111,38 @@ const Colorx = (function () {
                 this.navigating = (callback) => {
                     spectrum.callbacks.push(callback);
                 };
+            };
+            
+            if(typeof showSliderBar !== 'boolean')
+            return console.error('Expected a boolean value for the [showSliderBar] property');
+            
+            if(showSliderBar){
+                const {component, sliders} = createSliderBar(ColorModule, changes);
+                
+                this.changing((color) => {
+                    for(const slider in sliders){
+                        const value = color.values[slider] * 100 / sliders[slider].max;
+                        
+                        sliders[slider].thumb.style.left = value * (sliders[slider].element.clientWidth - sliders[slider].thumb.offsetWidth) / 100 + 'px';
+                        sliders[slider].thumb.style.top = value * (sliders[slider].element.clientHeight - sliders[slider].thumb.offsetHeight) / 100 + 'px';
+                    };
+                });
+                
+                for(const slider in sliders){
+                    componentsRegister[`${slider}-control`] = sliders[slider].element;
+                    
+                    sliders[slider].isDrag((x, y) => {
+                        sliderRegister.forEach(e => e({
+                            name: `${slider} control`,
+                            value: x | y,
+                            x: sliders[slider].thumb.getBoundingClientRect().left,
+                            y: sliders[slider].thumb.getBoundingClientRect().top
+                        }, ColorModule.value));
+                    });
+                };
+                
+                box.appendChild(component);
+                componentsRegister['slider-bar'] = component;
             };
             
             if(swatches.length === undefined)

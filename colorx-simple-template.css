@@ -1,9 +1,7 @@
 [template=simple]{
-  --color-1: #151515;
-  --color-2: #fff;
-  --color-3: #000;
-  --color-4: #999;
-  --color-5: #000000bb;
+  --color-1: #111;
+  --color-2: #eee;
+  --color-3: #90f;
 }
 
 .clx-open-box[template=simple]{
@@ -14,39 +12,40 @@
   transform: scale(0, 0);
 }
 
-.clx-picker[template=simple], .clx-preview[template=simple], .clx-add-favorite[template=simple], .clx-clear-favorites[template=simple]{
-  height: 30px;
+.clx-picker[template=simple], 
+.clx-preview[template=simple], 
+.clx-add-favorite[template=simple], 
+.clx-clear-favorites[template=simple]{
+  height: 27px;
   aspect-ratio: 1/1;
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
-  border-radius: 5px;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
 .clx-picker[template=simple]{
   height: 40px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .clx-box[template=simple]{
-  width: 320px;
+  width: auto;
   height: auto;
   padding: 10px;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: 190px 27px 27px 27px;
   grid-auto-rows: auto;
-  gap: 10px;
+  row-gap: 5px;
   background-color: var(--color-1);
   border-radius: 5px;
   transition: transform .25s;
-  border: 1px solid var(--color-2);
-  outline: 1px solid var(--color-1);
+  border: 1px solid var(--color-3);
+  outline: 2px solid var(--color-1);
 }
 
 .clx-format-control[template=simple]{
   width: 100%;
-  height: 15px;
-  grid-column: 1/10;
+  height: auto;
+  grid-column: 1;
   grid-row: 1;
   display: flex;
   align-items: center;
@@ -57,18 +56,18 @@
   color: var(--color-2);
   outline: none;
   border: none;
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 .clx-format-control[template=simple] > select {
   position: relative;
-  left: -7.5px;
+  left: -5px;
   text-transform: uppercase;
 }
 
 .clx-primary-preview[template=simple]{
-  grid-column: 10;
-  grid-row: 1/3;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .clx-list-color[template=simple]{
@@ -76,106 +75,71 @@
   height: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
 }
 
 .clx-lastest-colors[template=simple]{
-  grid-column: 1/11;
-  grid-row: 2/4;
+  grid-column: 3/5;
+  grid-row: 1;
 }
 
-.clx-lastest-colors[template=simple]::before,
-.clx-favorites[template=simple]::before, 
-.clx-swatches[template=simple]::before {
-  content: 'history';
-  padding-left: 10px;
+.clx-lastest-colors[template=simple] > .clx-preview:first-child{
+  display: none;
+}
+
+.clx-spectrum-component[template=simple]{
   width: 100%;
-  color: var(--color-4);
-  font-size: .9rem;
-}
-
-.clx-clasic-spectrum-component[template=simple]{
-  width: 100%;
-  height: auto;
-  grid-column: 1/10;
-  grid-row: 4;
-  display: flex;
-}
-
-.clx-clasic-spectrum-component[template=simple]{
-  aspect-ratio: 1/.7;
-  gap: 10px;
+  grid-column: 1/5;
+  grid-row: 2;
 }
 
 .clx-clasic-spectrum[template=simple] {
-  width: calc(100% - 30px);
-  height: 100%;
+  width: 100%;
+  aspect-ratio: 1/.7;
   z-index: 101;
 }
 
 .clx-clasic-spectrum[template=simple] > canvas{
   width: 100%;
   height: 100%;
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
-  border-radius: 2.5px;
-  overflow: hidden;
-  box-sizing: border-box;
+  border-radius: 2px 2px 0 0;
 }
 
 .clx-spectrum[template=simple] > button{
-  width: 10px;
+  width: 15px;
   aspect-ratio: 1/1;
   border-radius: 50%;
   border: 1px solid var(--color-2);
-  background-color: var(--color-5);
+  background-color: var(--color-1);
 }
 
-.clx-clasic-hue-control[template=simple]{
-  width: 30px;
-  height: 100%;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
-  box-sizing: border-box;
-}
-
-.clx-circle-spectrum-component[template=simple] {
-  grid-column: 1/9;
-  margin: 0 auto;
-  grid-row: 4;
-  width: 95%;
-  float: right;
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
-  box-sizing: border-box;
-}
-
-.clx-circle-spectrum[template=simple] {
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
-  box-sizing: border-box;
-}
-
-.clx-circle-hue-control[template=simple] > button{
-  background-color: var(--color-5);
-  border: 1px solid var(--color-2);
-  outline: none;
-}
-
-.clx-circle-spectrum[template=simple] > canvas {
-  border: 15px solid var(--color-1);
-  box-sizing: border-box;
-}
-
-.clx-clasic-hue-control[template=simple] > div{
-  height: 100%;
+.clx-hue-clasic-spectrum-control[template=simple],
+.clx-opacity-control[template=simple]{
   width: 100%;
-  background: linear-gradient(180deg, 
+  height: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.clx-hue-clasic-spectrum-control[template=simple] > div,
+.clx-opacity-control[template=simple] > div {
+  height: 20%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.clx-opacity-control[template=simple] > button, 
+.clx-hue-clasic-spectrum-control[template=simple] > button {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: var(--color-3);
+  border-radius: 50%;
+  border: 2px solid var(--color-1);
+  outline: 3px solid var(--color-1);
+}
+
+.clx-hue-clasic-spectrum-control[template=simple] > div{
+  background: linear-gradient(90deg, 
               hsl(0, 100%, 50%), 
               hsl(45, 100%, 50%),
               hsl(90, 100%, 50%),
@@ -185,82 +149,194 @@
               hsl(270, 100%, 50%),
               hsl(315, 100%, 50%),
               hsl(360, 100%, 50%));
-  
+}
+
+.clx-opacity-control[template=simple]{
+  grid-column: 1/5;
+  grid-row: 3;
+}
+
+.clx-opacity-control[template=simple] > div {
+  background: linear-gradient(90deg, transparent, var(--color-3));
+}
+
+.clx-circle-spectrum-component[template=simple]{
+  width: 90%;
+  padding-top: 90% !important;
+  margin: 0 auto;
+}
+
+.clx-hue-circle-spectrum-control[template=simple] > button {
+  border: 1px solid var(--color-1);
+  outline: none;
+  background-color: var(--color-2);
+}
+
+.clx-circle-spectrum[template=simple],
+.clx-circle-spectrum[template=simple] > canvas{
+  border: 7.5px solid var(--color-1);
   box-sizing: border-box;
 }
 
 .clx-favorites[template=simple]{
-  grid-column: 1/11;
-  grid-row: 5;
+  grid-column: 1/5;
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
 }
 
-.clx-favorites[template=simple]::before{
+.clx-favorites[template=simple]::before,
+.clx-swatches[template=simple]::before{
+  width: 100%;
+  color: var(--color-3);
+  padding-left: 10px;
+  font-size: .9rem;
   content: 'favorites'
 }
 
+.clx-favorites[template=simple]::before{
+  grid-column: 1/8;
+  grid-row: 1;
+  margin: auto 0;
+}
+
 .clx-add-favorite[template=simple]::before{
-  content: '➕';
+  content: 'add';
 }
 
 .clx-clear-favorites[template=simple]::before{
-  content: '🗑️';
+  content: 'clear';
 }
 
 .clx-add-favorite[template=simple],
 .clx-clear-favorites[template=simple] {
-  background-color: #ddd;
+  width: auto;
+  background-color: var(--color-1);
   transition: transform .5s;
+  color: var(--color-2);
+  border: none;
+  outline: none;
+  padding: 0;
 }
 
-.clx-add-favorite[template=simple]:active,
-.clx-clear-favorites[template=simple]:active {
+.clx-clear-favorites[template=simple] {
+  grid-column: 8/10;
+}
+
+.clx-add-favorite[template=modern]:active,
+.clx-clear-favorites[template=modern]:active {
   transform: scale(.9);
 }
 
 .clx-swatches[template=simple]{
-  grid-column: 1/11;
-  grid-row: 6;
+  grid-column: 1/5;
+  grid-row: 5;
 }
 
 .clx-swatches[template=simple]::before{
   content: 'swatches';
+  margin-bottom: 5px;
 }
 
-.clx-opacity-control[template=simple]{
-  width: 30px;
-  grid-column: 10;
-  grid-row: 4/5;
-  border: 1px solid var(--color-3);
-  outline: 1px solid var(--color-2);
+.clx-slider-bar[template=simple] {
+  width: 100%;
+  height: auto;
+  grid-column: 1/5;
+  grid-row: 6
+}
+
+.clx-slider[template=simple] {
+  width: 90%;
+  height: 30px;
+  float: right;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.clx-slider[template=simple] > button{
+  height: 100%;
+  aspect-ratio: 1/1;
+  padding: 0;
+  border: 6px solid var(--color-1);
+  background-color: var(--color-3);
+  border-radius: 50%;
   box-sizing: border-box;
 }
 
-.clx-opacity-control[template=simple] > button, .clx-clasic-hue-control[template=simple] > button {
+.clx-slider[template=simple] > div{
   width: 100%;
-  aspect-ratio: 1/1;
-  background-color: var(--color-3);
-  border: none;
-  outline: none;
+  height: 15%;
 }
 
-.clx-opacity-control[template=simple]:before{
-  content: '';
-  width: 100%;
-  height: 100%;
-  background: 
-        linear-gradient(45deg, #FFFFFF40 25%, transparent 25%),
-        linear-gradient(-45deg, #FFFFFF40 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, #FFFFFF40 75%),
-        linear-gradient(-45deg, transparent 75%, #FFFFFF40 75%);
-  background-size: 12px 12px;
-  background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
+.clx-red-control[template=simple] > div{
+  background: linear-gradient(90deg, #000, #ff0000);
+}
+
+.clx-green-control[template=simple] > div{
+  background: linear-gradient(90deg, #000, #00ff00);
+}
+
+.clx-blue-control[template=simple] > div{
+  background: linear-gradient(90deg, #000, #0000ff);
+}
+
+.clx-hue-control[template=simple] > div{
+  background: linear-gradient(90deg, 
+              hsl(0, 100%, 50%), 
+              hsl(45, 100%, 50%),
+              hsl(90, 100%, 50%),
+              hsl(135, 100%, 50%),
+              hsl(180, 100%, 50%),
+              hsl(225, 100%, 50%),
+              hsl(270, 100%, 50%),
+              hsl(315, 100%, 50%),
+              hsl(360, 100%, 50%));
+}
+
+.clx-saturation-control[template=simple] > div{
+  background: linear-gradient(90deg, #000, #808080);
+}
+
+.clx-luminosity-control[template=simple] > div{
+  border-color: grey;
+  background: linear-gradient(90deg, #000, #fff);
+}
+
+.clx-slider[template=simple]::before {
+  width: 10%;
   position: absolute;
-  pointer-events: none;
+  left: -11%;
+  height: 100%;
+  background-color: #222;
+  color: var(--color-3);
+  font-size: .8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.clx-opacity-control[template=simple] > div {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, var(--color-1), transparent);
-  background-color: var(--color-2);
+.clx-red-control[template=simple]::before {
+  content: 'R';
+}
+
+.clx-blue-control[template=simple]::before {
+  content: 'B'
+}
+
+.clx-green-control[template=simple]::before {
+  content: 'G'
+}
+
+.clx-hue-control[template=simple]::before {
+  content: 'H'
+}
+
+.clx-luminosity-control[template=simple]::before {
+  content: 'L'
+}
+
+.clx-saturation-control[template=simple]::before {
+  content: 'S';
 }

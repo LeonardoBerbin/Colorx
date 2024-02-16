@@ -1,7 +1,17 @@
-const clasicTemplate = Colorx.create({
+const simpleTemplate = Colorx.create({
     container: '#container-1',
     template: 'simple',
-    numberOfPickers: 3
+    spectrumType: 'clasic',
+    showSliderBar: true
 });
 
-clasicTemplate.on('update', (color) => document.body.style.backgroundColor = color.rgb)
+simpleTemplate.on('update', (color) => document.body.style.backgroundColor = color.rgb);
+
+const modernTemplate = Colorx.create({
+    container: '#container-2',
+    template: 'modern',
+    spectrumType: 'circle',
+    showSliderBar: true
+});
+
+modernTemplate.on('update', (color) => document.body.style.backgroundColor = color.rgb);
