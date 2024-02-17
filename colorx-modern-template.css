@@ -1,3 +1,21 @@
+/*
+ * Nombre del Template: modern
+ * Versión Compatible: 1.0.0
+ * Autor: Leonardo Berbin
+ *
+ * Descripción: Este archivo CSS contiene estilos personalizados para el template modern.
+ * Se debe usar en conjunto con el HTML correspondiente para lograr el diseño deseado.
+ * Asegúrate de mantener la compatibilidad con la versión 1.0.0 del template.
+ *
+---------------------------------------------------------------------------------------------------------
+ <link rel=stylesheet name=modern class=Colorx-Template href="directory/colorx-modern-template.css"/>
+---------------------------------------------------------------------------------------------------------
+ * Nota: para que los estilos sean aplicados es necesario cargar el archivo del mode indicado previamente,
+ * reemplazando [directory] con su directorio, y asignar a la propiedad template de la nueva instancia 
+ * en JavaScript el nombre de esta plantilla
+ */
+ 
+/* Aquí comienzan los estilos CSS */
 
 [template=modern]{
   --color-1: #151515;
@@ -27,7 +45,8 @@
 
 .clx-picker[template=modern]{
   width: 40px;
-  border: 1px solid #000;
+  border: 1px solid var(--color-2);
+  outline: 1px solid var(--color-1);
   border-radius: 5px;
 }
 
@@ -60,8 +79,8 @@
   display: grid;
   grid-auto-columns: auto;
   grid-auto-rows: auto;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 8px;
   background-color: var(--color-1);
   border: 1px solid var(--color-3);
   outline: 2px solid var(--color-1);
