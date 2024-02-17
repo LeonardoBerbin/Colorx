@@ -1,3 +1,22 @@
+/*
+ * Nombre del Template: simple
+ * Versión Compatible: 1.0.0
+ * Autor: Leonardo Berbin
+ *
+ * Descripción: Este archivo CSS contiene estilos personalizados para el template simple.
+ * Se debe usar en conjunto con el HTML correspondiente para lograr el diseño deseado.
+ * Asegúrate de mantener la compatibilidad con la versión 1.0.0 del template.
+ *
+---------------------------------------------------------------------------------------------------------
+ <link rel=stylesheet name=modern class=Colorx-Template href="directory/colorx-modern-template.css"/>
+---------------------------------------------------------------------------------------------------------
+ * Nota: para que los estilos sean aplicados es necesario cargar el archivo del mode indicado previamente,
+ * reemplazando [directory] con su directorio, y asignar a la propiedad template de la nueva instancia 
+ * en JavaScript el nombre de esta plantilla
+ */
+ 
+/* Aquí comienzan los estilos CSS */
+
 [template=simple]{
   --color-1: #111;
   --color-2: #eee;
@@ -22,7 +41,8 @@
 
 .clx-picker[template=simple]{
   height: 40px;
-  border: 1px solid #000;
+  border: 1px solid var(--color-2);
+  outline: 1px solid var(--color-1);
   border-radius: 5px;
   overflow: hidden;
 }
