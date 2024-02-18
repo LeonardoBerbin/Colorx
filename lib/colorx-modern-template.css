@@ -10,7 +10,7 @@
 ---------------------------------------------------------------------------------------------------------
  <link rel=stylesheet name=modern class=Colorx-Template href="directory/colorx-modern-template.css"/>
 ---------------------------------------------------------------------------------------------------------
- * Nota: para que los estilos sean aplicados es necesario cargar el archivo del mode indicado previamente,
+ * Nota: para que los estilos sean aplicados es necesario cargar el archivo del modo indicado previamente,
  * reemplazando [directory] con su directorio, y asignar a la propiedad template de la nueva instancia 
  * en JavaScript el nombre de esta plantilla
  */
