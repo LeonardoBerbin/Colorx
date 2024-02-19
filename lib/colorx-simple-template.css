@@ -48,7 +48,7 @@
 }
 
 .clx-box[template=simple]{
-  width: 275px;
+  width: 280px;
   height: auto;
   padding: 10px;
   display: grid;
@@ -64,25 +64,29 @@
 
 .clx-format-control[template=simple]{
   width: 100%;
-  height: auto;
+  aspect-ratio: 10/1;
   grid-column: 1;
   grid-row: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
-.clx-format-control[template=simple] > input, .clx-format-control[template=simple] > select {
+.clx-format-control[template=simple] > input, 
+.clx-format-control[template=simple] > select {
+  height: 100%;
+  overflow: hidden;
   background-color: transparent;
   color: var(--color-2);
   outline: none;
   border: none;
-  font-size: .8rem;
+  font-size: .8fr;
 }
 
 .clx-format-control[template=simple] > select {
   position: relative;
   left: -5px;
   text-transform: uppercase;
+  width: auto;
 }
 
 .clx-primary-preview[template=simple]{
@@ -217,33 +221,41 @@
 }
 
 .clx-favorites[template=simple]::before{
-  grid-column: 1/8;
+  grid-column: 1/7;
   grid-row: 1;
   margin: auto 0;
 }
 
 .clx-add-favorite[template=simple]::before{
   content: 'add';
+  float: right;
 }
 
 .clx-clear-favorites[template=simple]::before{
   content: 'clear';
+  float: right;
 }
 
 .clx-add-favorite[template=simple],
 .clx-clear-favorites[template=simple] {
-  width: 100%;
   background-color: var(--color-1);
   transition: transform .5s;
   color: var(--color-2);
   border: none;
   outline: none;
   padding: 0;
+  aspect-ratio: 2/1;
+  overflow: hidden;
+}
+
+.clx-add-favorite[template=simple] {
+  grid-column: 9/11;
+  grid-row: 1;
 }
 
 .clx-clear-favorites[template=simple] {
-  grid-column: 8/10;
-  aspect-ratio: 2/1;
+  grid-column: 7/9;
+  grid-row: 1;
 }
 
 .clx-add-favorite[template=modern]:active,
