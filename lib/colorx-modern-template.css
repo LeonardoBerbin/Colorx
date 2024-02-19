@@ -73,7 +73,7 @@
 }
 
 .clx-box[template=modern]{
-  display: none;
+  box-sizing: border-box;
   width: 280px;
   height: auto;
   display: grid;
