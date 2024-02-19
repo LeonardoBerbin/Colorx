@@ -73,7 +73,6 @@
 }
 
 .clx-box[template=modern]{
-  box-sizing: border-box;
   width: 280px;
   height: auto;
   display: grid;
@@ -86,6 +85,7 @@
   outline: 2px solid var(--color-1);
   border-radius: 5px;
   transition: transform .25s;
+  box-sizing: border-box;
 }
 
 .clx-format-control[template=modern]{
@@ -303,7 +303,7 @@
   height: 100%;
   aspect-ratio: 1/1;
   padding: 0;
-  border: 5px solid var(--color-1);
+  border: 6px solid var(--color-1);
   outline: 1px solid var(--color-1);
   background-color: var(--color-3);
   border-radius: 50%;
