@@ -40,7 +40,6 @@
 }
 
 .clx-picker[template=simple]{
-  box-sizing: border-box;
   width: 40px;
   border: 1px solid var(--color-2);
   outline: 1px solid var(--color-1);
@@ -61,6 +60,7 @@
   transition: transform .25s;
   border: 1px solid var(--color-3);
   outline: 2px solid var(--color-1);
+  box-sizing: border-box;
 }
 
 .clx-format-control[template=simple]{
@@ -296,6 +296,7 @@
   height: 100%;
   aspect-ratio: 1/1;
   padding: 0;
+  outline: 1px solid var(--color-1);
   border: 6px solid var(--color-1);
   background-color: var(--color-3);
   border-radius: 50%;
