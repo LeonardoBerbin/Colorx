@@ -35,12 +35,12 @@
 .clx-preview[template=simple], 
 .clx-add-favorite[template=simple], 
 .clx-clear-favorites[template=simple]{
-  height: 27px;
+  width: 100%;
   aspect-ratio: 1/1;
 }
 
 .clx-picker[template=simple]{
-  height: 40px;
+  width: 40px;
   border: 1px solid var(--color-2);
   outline: 1px solid var(--color-1);
   border-radius: 5px;
@@ -48,11 +48,11 @@
 }
 
 .clx-box[template=simple]{
-  width: auto;
+  width: 275px;
   height: auto;
   padding: 10px;
   display: grid;
-  grid-template-columns: 190px 27px 27px 27px;
+  grid-auto-columns: 70% 10% 10% 10%;
   grid-auto-rows: auto;
   row-gap: 5px;
   background-color: var(--color-1);
@@ -93,13 +93,15 @@
 .clx-list-color[template=simple]{
   width: 100%;
   height: auto;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
 }
 
 .clx-lastest-colors[template=simple]{
   grid-column: 3/5;
   grid-row: 1;
+  display: flex;
+  overflow: hidden;
 }
 
 .clx-lastest-colors[template=simple] > .clx-preview:first-child{
@@ -230,7 +232,7 @@
 
 .clx-add-favorite[template=simple],
 .clx-clear-favorites[template=simple] {
-  width: auto;
+  width: 100%;
   background-color: var(--color-1);
   transition: transform .5s;
   color: var(--color-2);
@@ -241,6 +243,7 @@
 
 .clx-clear-favorites[template=simple] {
   grid-column: 8/10;
+  aspect-ratio: 2/1;
 }
 
 .clx-add-favorite[template=modern]:active,
@@ -256,6 +259,7 @@
 .clx-swatches[template=simple]::before{
   content: 'swatches';
   margin-bottom: 5px;
+  grid-column: 1/11;
 }
 
 .clx-slider-bar[template=simple] {
