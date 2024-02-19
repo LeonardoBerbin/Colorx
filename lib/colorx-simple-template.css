@@ -40,6 +40,7 @@
 }
 
 .clx-picker[template=simple]{
+  box-sizing: border-box;
   width: 40px;
   border: 1px solid var(--color-2);
   outline: 1px solid var(--color-1);
