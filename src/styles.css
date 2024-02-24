@@ -2,9 +2,11 @@
 * Estilos condicionado a un ancho de pantalla menor a 749px o mayor a 750px
 */
 
-html {
+html, body {
   width: 100vw;
   height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 } 
 
@@ -65,11 +67,7 @@ html {
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
   background: linear-gradient(180deg, #000, #333);
-  overflow: hidden;
 }
 
 body > canvas {
