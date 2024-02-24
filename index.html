@@ -1,20 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./lib/colorx-simple-template.css" class="Colorx-Template" name="simple">
-  <link rel="stylesheet" href="./lib/colorx-modern-template.css" class="Colorx-Template" name="modern">
-  <link rel="stylesheet" href="./styles.css">
+  <title>Colorx library</title>
+  <!-- estilos de Colorx -->
+  <link rel="stylesheet" href="./lib/colorx-simple-template.css" class="Colorx-Template" name="simple" />
+  <link rel="stylesheet" href="./lib/colorx-modern-template.css" class="Colorx-Template" name="modern" />
+  <!-- estilos de pagina -->
+  <link rel="stylesheet" href="./src/styles.css" />
 </head>
 <body>
-  <header></header>
+  <!-- bootloader -->
+  <div id="bootloader">
+    colo<span>rx</span>
+  </div>
+  <!-- enlace a repositorio en github -->
+  <a id="github-link" href="https://github.com/LeonardoBerbin/Colorx"></a>
+  <!-- Lienzo y boton para limpiarlo -->
+  <canvas></canvas>
+  <button id="clear-canvas">borrar</button>
+  <!-- contenido principal -->
   <main>
-    <section id="container-1" class="clx-container"></section>
-    <section id="container-2" class="clx-container"></section>
+    <!-- visor principal -->
+    <button id="viewer">
+      <div></div>
+    </button>
+    <!-- menu de plantillas -->
+    <section id="select-template">
+      <input id="simple" type="radio" name="select-template" checked="true" style="display: none">
+      <label for="simple">simple</label>
+      <input id="modern" type="radio" name="select-template" style="display: none">
+      <label for="modern">modern</label> 
+    </section>
+    <!-- contenedor de plantillas -->
+    <section id="templates">
+      <div id="container-1"></div>
+      <div id="container-2"></div>
+    </section>
+    <!-- codigos de muestra -->
+    <section id="lines-code">
+      <!-- abrir y cerrar contenedores de codigo -->
+      <input type="checkbox" id="view-code" style="display: none" checked="true"/>
+      <label for="view-code">+</label>
+      <!-- codigos para la plantilla simple -->
+      <div class="simple-code">
+        <div class="code">
+          <h3>html</h3>
+          <button class="simple-html">copiar</button>
+          <pre>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LeonardoBerbin/Colorx@main/lib/colorx-simple-template.css" class="Colorx-Template" name="simple"/&gt;&#10;&lt;script src="https://cdn.jsdelivr.net/gh/LeonardoBerbin/Colorx@main/lib/colorx-v1.0.0.js"&gt;&lt;/script&gt;&#10;</pre>
+        </div>
+        <div class="code">
+          <h3>JavaScript</h3>
+          <button class="simple-js">copiar</button>
+          <pre>const myInstancia = Colorx.create({&#10;  container: '#myDiv',&#10;  template: 'simple',&#10;  spectrumType: 'clasic',&#10;  showSliderBar: true&#10;});&#10;</pre>
+        </div>
+      </div>
+      <!-- codigo para la plantilla modern -->
+      <div class="modern-code">
+        <div class="code">
+          <h3>html</h3>
+          <button class="modern-html">copiar</button>
+          <pre>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LeonardoBerbin/Colorx@main/lib/colorx-modern-template.css" class="Colorx-Template" name="modern"/&gt;&#10;&lt;script src="https://cdn.jsdelivr.net/gh/LeonardoBerbin/Colorx@main/lib/colorx-v1.0.0.js"&gt;&lt;/script&gt;&#10;</pre>
+        </div>
+        <div class="code">
+          <h3>JavaScript</h3>
+          <button class="modern-js">copiar</button>
+          <pre>const myInstancia = Colorx.create({&#10;  container: '#myDiv',&#10;  template: 'modern',&#10;  spectrumType: 'circle',&#10;  showSliderBar: true&#10;});&#10;</pre>
+        </div>
+      </div>
+    </section>
   </main>
+  <!-- libreria Colorx -->
   <script src="./lib/colorx-v1.0.0.js"></script>
-  <script src="./script.js"></script>
+  <!-- script de pagina -->
+  <script src="./src/script.js"></script>
 </body>
 </html>
