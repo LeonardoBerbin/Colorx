@@ -2,6 +2,12 @@
 * Estilos condicionado a un ancho de pantalla menor a 749px o mayor a 750px
 */
 
+html {
+		width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+} 
+
 @font-face {
     font-family: 'LG';
     src: url('../assets/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
