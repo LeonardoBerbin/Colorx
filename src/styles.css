@@ -1,1 +1,380 @@
+/*
+* Estilos condicionado a un ancho de pantalla menor a 749px o mayor a 750px
+*/
+
+@font-face {
+    font-family: 'LG';
+    src: url('../assets/Luckiest_Guy/LuckiestGuy-Regular.ttf') format('truetype');
+}
+
+#bootloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: 600;
+  font-family: 'LG';
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+#bootloader::before{
+  content: '';
+  width: 360px;
+  aspect-ratio: 1/1;
+  border: 2rem dotted #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 180px);
+  left: calc(50% - 180px);
+  box-sizing: border-box;
+  animation: rotate 5s linear infinite;
+}
+
+#bootloader > span {
+  text-shadow: 0 0 0rem darkred;
+  -webkit-text-stroke: 1px #fff; /* Grosor y color del borde */
+  -webkit-text-fill-color: #000; /* Color del relleno */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --color-1: #999;
+  --color-2: #fff;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(180deg, #000, #333);
+  overflow: hidden;
+}
+
+body > canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#github-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+  background: url("../assets/github.jpg") center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform .25s;
+}
+
+#github-link:active {
+  transform: scale(.9);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#select-template {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  background-color: #000;
+}
+
+#select-template > label {
+  height: 95%;
+  aspect-ratio: 2/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-1);
+  color: var(--color-1);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+#select-template > input:checked + label {
+  color: #fff;
+  border-color: #fff;
+}
+
+#viewer{
+  z-index: 2;
+  aspect-ratio: 1/1;
+  border: none;
+  outline: none;
+  transition: transform .25s;
+  border-radius: 50%;
+  background-color: transparent;
+  overflow: hidden;
+}
+  
+#viewer:active{
+  transform: scale(.9)
+}
+  
+#viewer::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: 
+  linear-gradient(45deg, #FFFFFF40 25%, transparent 25%),
+  linear-gradient(-45deg, #FFFFFF40 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, #FFFFFF40 75%),
+  linear-gradient(-45deg, transparent 75%, #FFFFFF40 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#viewer > div{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-2);
+}
+
+#templates, #lines-code {
+  height: auto;
+  display: grid;
+  grid-template-columns: 100% 100%;
+  grid-auto-row: auto;
+  overflow: hidden;
+}
+
+#templates{
+  scroll-behavior: smooth;
+}
+
+.code{
+  width: 100%;
+  background-color: #000000da;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid var(--color-1);
+  border-radius: 2px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+
+.code > h3, 
+.code > button, 
+.code > pre{
+  height: auto;
+  width: auto;
+  padding: 5px;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  font-size: .85rem;
+  color: #eee;
+}
+
+.code > pre{
+  width: 100%;
+  background-color: transparent;
+  margin: 0;
+  overflow: scroll;
+  color: var(--color-1);
+}
+
+#clear-canvas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  color: var(--color-1);
+  text-transform: uppercase;
+  border: 1px solid var(--color-1);
+  border-radius: 2px;
+  background-color: transparent;
+  transition: transform .25s;
+}
+  
+#clear-canvas:active{
+  transform: scale(.9);
+  color: #fff;
+  border-color: #fff;
+}
+
+@media(max-width: 749px){
+  #github-link {
+      position: absolute;
+      top: 50px;
+      right: 15px;
+      z-index: 2;
+  }
+  #select-template {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    gap: 5px;
+  }
+  
+  #viewer {
+    width: 37px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  
+  #templates {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+  }
+  
+  .clx-container{
+    transition: transform .5s;
+    transform-origin: 0 0;
+    transform: scale(.8);
+  }
+  
+  #lines-code {
+    width: 100%;
+    position: absolute;
+    top: 60%;
+    left: 0;
+  }
+  
+  #lines-code > label{
+    grid-column: 1/3;
+    position: fixed;
+    top: calc(60% - 5px - 2rem);
+    right: 5px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    aspect-ratio: 1/1;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-1);
+    transition: transform .5s;
+  }
+      
+  #lines-code > input:checked + label{
+    transform: rotate(225deg);
+  }
+  
+  #clear-canvas {
+    height: 37px;
+    position: absolute;
+    top: 5px;
+    left: 47px;
+  }
+}
+
+@media(min-width: 750px){
+  #github-link{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+  }
+  main{
+    width: 600px;
+    height: auto;
+    max-height: 90vh;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 20px;
+    position: relative;
+    top: 10px;
+  }
+  
+  #viewer {
+      height: 40px;
+      position: relative;
+      grid-column: 2;
+      grid-row: 6;
+  }
+  
+  #select-template{
+      display: flex;
+      width: 100%;
+      height: 45px;
+      justify-content: flex-end;
+      grid-column: 2;
+      grid-row: 6;
+      gap: 20px;
+      background-color: transparent;
+  }
+  
+  #select-template > label{
+      background-color: #000;
+  }
+  
+  #templates{
+      width: 100%;
+      grid-column: 1;
+      grid-row: 1/11;
+  }
+
+  #lines-code{
+      width: 100%;
+      grid-column: 2;
+      grid-row: 1/6;
+  }
+  
+  .code{
+     margin: 0;
+     margin-bottom: 20px;
+     padding: 5px;
+     box-sizing: border-box;
+     background-color: #000;
+  }
+  
+  #lines-code > div > .code:last-child{
+      margin: 0;
+  }
+  
+  #lines-code > label{
+      display: none;
+  }
+  
+  #clear-canvas {
+      padding: 10px;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+  }
+  
+}
+
 
